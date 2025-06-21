@@ -96,7 +96,11 @@ export default function Home() {
           onPress={() => {
             if (item.name === 'Doctor') {
               router.push('/components/FindDoctor');
-            } else {
+            }
+            if (item.name === 'Lab Test') {
+              router.push('/components/LabTest');
+            }
+             else {
               console.log(item.name);
             }
           }}
@@ -127,7 +131,7 @@ export default function Home() {
                   { image: populardoctor2, name: 'Dr. Rajiv' },
                   { image: populardoctor3, name: 'Dr. Latha' },
                 ].map((doc, index) => (
-                  <TouchableOpacity key={index} style={styles.popularDoctorCard} onPress={() => console.log(doc.name)}>
+                  <TouchableOpacity key={index} style={styles.popularDoctorCard} onPress={() => router.push('/components/FindDoctorBySpeciality')}>
                     <Image source={doc.image} style={styles.popularDoctorImage} />
                     <Text style={styles.popularDoctorName}>{doc.name}</Text>
                   </TouchableOpacity>
@@ -148,7 +152,7 @@ export default function Home() {
                 { name: 'COVID Test', image: covidtest },
                 { name: 'Dengue Test', image: Dengutest },
               ].map((test, index) => (
-                <TouchableOpacity key={index} style={styles.labTestCard} onPress={() => console.log(test.name)}>
+                <TouchableOpacity key={index} style={styles.labTestCard} onPress={() => router.push('/components/LabTest')}>
                   <View style={styles.labTestImageWrapper}>
                     <Image source={test.image} style={styles.labTestImage} resizeMode="contain" />
                   </View>
