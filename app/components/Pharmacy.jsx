@@ -12,6 +12,11 @@ import { Ionicons } from '@expo/vector-icons';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import styles from './styles/pharmacyStyles';
+
+import pharmacy from '../../assets/images/pharmacy.png';
+import apolo from '../../assets/images/apolo.png';
+import pharmacypluse from '../../assets/images/pharmacypluse.jpeg';
+import medpluse from '../../assets/images/medpluse.jpeg';
 import labImage from '../../assets/images/doctor.jpg';
 
 const medicines = [
@@ -24,41 +29,18 @@ const medicines = [
   'Diclofenac',
 ];
 
-const labList = [
-  {
-    id: 1,
-    name: 'Apollo',
-    experience: '15 YEARS',
-    distance: '7 Km · Chennai',
-    address: 'Nanganallur, Chennai.',
-    note: 'Reports within 10hrs',
-    image: labImage,
-  },
-  {
-    id: 2,
-    name: 'pharmacy',
-    experience: '10 YEARS',
-    distance: '5 Km · Chennai',
-    address: 'Velachery, Chennai.',
-    note: 'Reports within 12hrs',
-    image: labImage,
-  },
-  {
-    id: 3,
-    name: 'MedPlus',
-    experience: '8 YEARS',
-    distance: '3.5 Km · Chennai',
-    address: 'Guindy, Chennai.',
-    note: 'Same-day reports',
-    image: labImage,
-  },
+const pharmacyList = [
+  { name: 'Apollo', image: apolo },
+  { name: 'Pharmacy', image: pharmacy },
+  { name: 'Pharmacy+', image: pharmacypluse },
+  { name: 'MedPlus', image: medpluse },
+  { name: 'Apollo', image: apolo },
+  { name: 'Pharmacy', image: pharmacy },
 ];
 
 export default function Pharmacy() {
   const router = useRouter();
   const [query, setQuery] = useState('');
-  const [selectedMedicine, setSelectedMedicine] = useState(null);
-  const [selectedMedicineLabs, setSelectedMedicineLabs] = useState([]);
   const [filteredMedicines, setFilteredMedicines] = useState([]);
 
   const handleSearch = (text) => {
@@ -74,10 +56,10 @@ export default function Pharmacy() {
   };
 
   const handleSelectMedicine = (medicine) => {
-    setSelectedMedicine(medicine);
-    setSelectedMedicineLabs(labList); // Simulated data
-    setFilteredMedicines([]);
-    setQuery('');
+    router.push({
+      pathname: '/components/MedicineDetails',
+      params: { medicine },
+    });
   };
 
   return (
@@ -86,9 +68,13 @@ export default function Pharmacy() {
 
       {/* Header */}
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => router.back()} style={styles.backButton}>
-          <Ionicons name="arrow-back" size={22} color="#fff" />
-        </TouchableOpacity>
+ <TouchableOpacity
+  onPress={() => router.push('/components/Home')}
+  style={styles.backButton}
+>
+  <Ionicons name="arrow-back" size={22} color="#fff" />
+</TouchableOpacity>
+
 
         <Text style={styles.headerTitle}>Pharmacy</Text>
 
@@ -127,44 +113,39 @@ export default function Pharmacy() {
         )}
       </View>
 
-      {/* Selected Medicine Cards */}
-      <ScrollView style={{ padding: 16 }}>
-        {selectedMedicine && selectedMedicineLabs.map((lab, index) => (
-          <View key={index} style={styles.labCard}>
-            <View style={styles.labInfoRow}>
-              <Image source={lab.image} style={styles.labImage} />
-              <View style={styles.labDetails}>
-                <Text style={styles.selectedMedicine}>
-                  Medicine: {selectedMedicine}
-                </Text>
-                <Text style={styles.labTitle}>{lab.name}</Text>
-                <Text style={styles.labExperience}>{lab.experience}</Text>
-                <Text style={styles.labLocation}>{lab.distance}</Text>
-                <Text style={styles.labLocation}>{lab.address}</Text>
-                <Text style={styles.labNote}>{lab.note}</Text>
-              </View>
-            </View>
+      {/* Pharmacy Near You */}
+      <View style={{ paddingHorizontal: 16, paddingTop: 20 }}>
+        <View style={styles.sectionHeader}>
+          <Text style={styles.sectionTitle}>Pharmacy Near You</Text>
+          <TouchableOpacity onPress={() => alert('View All Pressed')}>
+            <Text style={styles.viewAll}>View All</Text>
+          </TouchableOpacity>
+        </View>
 
-            <View style={styles.labButtonRow}>
-              <TouchableOpacity style={styles.labButton}>
-                <Ionicons name="call" size={16} color="#fff" />
-                <Text style={styles.labButtonText}>Call</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.labButton}onPress={() => router.push('/components/Enquiry')}>
-                <Ionicons name="help-circle-outline" size={16} color="#fff" />
-                <Text style={styles.labButtonText}>Enquiry Now</Text>
-              </TouchableOpacity>
-              <TouchableOpacity style={styles.labButton}>
-                <Ionicons name="logo-whatsapp" size={16} color="#fff" />
-                <Text style={styles.labButtonText}>Whatsapp</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        ))}
-      </ScrollView>
+        <View style={styles.pharmacyGrid}>
+          {pharmacyList.map((item, index) => (
+            <TouchableOpacity
+              key={index}
+              style={styles.pharmacyItem}
+              onPress={() =>
+                router.push({
+                  pathname: '/components/PharmacyDetails',
+                  params: { pharmacyName: item.name },
+                })
+              }
+            >
+              <Image source={item.image} style={styles.pharmacyImage} />
+              <Text style={styles.pharmacyLabel}>{item.name}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      </View>
     </SafeAreaView>
   );
 }
+
+
+
 
 
 

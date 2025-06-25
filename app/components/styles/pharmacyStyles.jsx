@@ -12,9 +12,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
   },
-  backButton: {
-    marginRight: 12,
-  },
+  backButton: { marginRight: 12 },
   headerTitle: {
     color: '#fff',
     fontSize: 18,
@@ -27,9 +25,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
   },
-  iconButton: {
-    marginRight: 12,
-  },
+  iconButton: { marginRight: 12 },
   profileButton: {
     width: 28,
     height: 28,
@@ -122,6 +118,12 @@ const styles = StyleSheet.create({
     color: '#777',
     marginTop: 2,
   },
+  selectedMedicine: {
+    fontSize: 13,
+    color: '#116C89',
+    fontWeight: '600',
+    marginBottom: 2,
+  },
   labButtonRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -142,16 +144,54 @@ const styles = StyleSheet.create({
     fontSize: 8,
     marginLeft: 6,
   },
-  selectedMedicine: {
+
+sectionHeader: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  marginBottom: 12,
+},
+sectionTitle: {
+  fontSize: 16,
+  fontWeight: 'bold',
+  color: '#333',
+},
+viewAll: {
   fontSize: 13,
   color: '#116C89',
   fontWeight: '600',
-  marginBottom: 2,
 },
-
+  pharmacyGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+  },
+  pharmacyItem: {
+    width: '30%',
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    alignItems: 'center',
+    marginBottom: 18,
+    padding: 8,
+    borderWidth: 1,
+    borderColor: '#ccc',
+  },
+  pharmacyImage: {
+    width: 50,
+    height: 50,
+    resizeMode: 'contain',
+    marginBottom: 6,
+  },
+  pharmacyLabel: {
+    fontSize: 10,
+    textAlign: 'center',
+    color: '#333',
+  },
 });
 
 export default styles;
+
+
 
 
 
