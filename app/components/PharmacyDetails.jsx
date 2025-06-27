@@ -12,7 +12,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter, useLocalSearchParams } from 'expo-router';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import styles from './styles/pharmacyStyles';
-import medicineIcon from '../../assets/images/pharmacy.png';
+import medicineIcon from '../../assets/images/pharmacyy.png';
 
 const availableMedicines = [
   {

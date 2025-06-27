@@ -13,10 +13,10 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import styles from './styles/pharmacyStyles';
 
-import pharmacy from '../../assets/images/pharmacy.png';
+import pharmacy from '../../assets/images/pharmacyy.png';
 import apolo from '../../assets/images/apolo.png';
-import pharmacypluse from '../../assets/images/pharmacypluse.jpeg';
-import medpluse from '../../assets/images/medpluse.jpeg';
+import pharmacypluse from '../../assets/images/doctor.jpg';
+import medpluse from '../../assets/images/doctor.jpg';
 import labImage from '../../assets/images/doctor.jpg';
 
 const medicines = [
